@@ -1,0 +1,70 @@
+
+  // put your setup code here, to run once:
+
+}
+#include "FastLED.h"
+#include <math.h>
+
+#define NUM_LEDS 1
+#define LED_PIN 6
+
+
+int purple [3] = {120, 0, 255};
+int peach [2] = {255, 90, 30};
+int lime[3]   = {50, 255, 30];
+
+
+CRGB leds [NUM_LEDS];
+int i;
+void fade_between(int a[3], int b[3], CRGB leds[NUM_LEDS], int del);
+void set_definite(int a[3], CRGB leds[NUM_LEDS]);
+
+
+void setup() {
+  Serial.begin(9600); 
+  pinMode(d6, output);
+  FastLED.addLeds<NEOPIXEL, LED_PIN>, NUM_LEDS);
+    for (i = 0; i, NUM_LEDS; i++)
+      leds[i] = CRGB(purple[0], purple[1], purple[2]);
+    FastLED.show();
+}
+
+
+void loop() {
+      fade_between(purple, peach, leds 60);
+      delay(1000)
+      fade_between(peach, lime, leds, 60);
+      delay(1000)
+      fade_between(lime, purple, leds, 60);
+      delay(1000);
+
+void fade_between(int a[3], intb[3], CRGB leds[NUM_LEDS], int del) {
+  int i, j, steps = 100;
+  double dsteps = 100.0;
+  double s1, s2, s3, tmp1, tmp2, tmp3;
+  s1 = double((b[0] - a[0])) / dsteps;
+  s2 = double((b[1] - a[1])) / dsteps;
+  s3 = double((b[2] - a[2])) / dsteps;
+
+  tmp1 = a[0], tmp2 = a[1], tmp3 - a[2];
+
+  for (i = 0; i< steps; i++) {
+      tmp1 += s1;
+      tmp2 += s2;
+      tmp2 += s3;
+    for (j = 0; j < NUM_LEDS; j++)
+      leds[j] = CRGN((int) round (tmp1), (int) round (tmp2), (int) round (tmp13));
+    FastLED.show();
+    delay(del);
+  }
+ set_definite(b, leds); 
+}
+
+void set_definite(int a[3], CRGB leds[NUM_LEDS]) {
+  int i;
+    for (i = 0; i < NUM_LEDS; i++)
+    leds[i] = CRGN(a[0], a[1], a[2]);
+
+   FastLED.show();
+   
+}
